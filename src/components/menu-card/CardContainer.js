@@ -13,7 +13,7 @@ export const CardContainer = () => {
   ];
   return (
     <div className="flex justify-center">
-      <div className="bg-white mt-[60vh] p-4 m-5 rounded-lg">
+      <div className="bg-white mt-10 p-4 m-5 rounded-lg">
         {items.map((item) => (
           <FoodCard key={item.name} item={item} />
         ))}
