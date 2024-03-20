@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { cartContext } from "../../context/CartContextProvider";
 
 export const Header = ({ cartHandler }) => {
+  const { count } = useContext(cartContext);
   return (
     <>
       <div className="bg-red-900 sm:px-24 px-10 flex justify-between h-20 items-center text-lg ">
@@ -17,7 +20,7 @@ export const Header = ({ cartHandler }) => {
           >
             Your Cart
           </div>
-          <div className="bg-red-900 mr-5 px-4 rounded-2xl">0</div>
+          <div className="bg-red-900 mr-5 px-4 rounded-2xl">{count}</div>
         </div>
       </div>
 

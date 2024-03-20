@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { cartContext } from "../../context/CartContextProvider";
 
 export const Form = () => {
   const [quantity, setQuantity] = useState(0);
+
+  const { count, setCount } = useContext(cartContext);
   return (
     <div>
       <label htmlFor="quantity">Quantity</label>
@@ -16,7 +19,13 @@ export const Form = () => {
       />
 
       <div className="flex justify-end m-2">
-        <button className="bg-red-800 px-10 py-1 text-white font-bold rounded-2xl">
+        <button
+          className="bg-red-800 px-10 py-1 text-white font-bold rounded-2xl"
+          onClick={() => {
+            setCount(count + +quantity);
+            setQuantity(0);
+          }}
+        >
           +Add
         </button>
       </div>
