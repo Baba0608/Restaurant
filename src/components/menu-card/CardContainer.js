@@ -11,6 +11,7 @@ export const CardContainer = () => {
     },
     { name: "Green Bowl!", description: "Healthy...and green...", cost: 330 },
   ];
+
   return (
     <div className="flex justify-center">
       <div className="bg-white mt-10 p-4 m-5 rounded-lg">

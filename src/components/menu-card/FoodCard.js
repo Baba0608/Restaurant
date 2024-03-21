@@ -10,7 +10,7 @@ export const FoodCard = ({ item }) => {
         <div className="text-orange-400 font-bold">{cost} /-</div>
       </div>
 
-      <Form />
+      <Form item={item} />
     </div>
   );
 };

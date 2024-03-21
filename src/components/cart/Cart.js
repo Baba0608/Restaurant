@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
+import { cartContext } from "../../context/CartContextProvider";
+import { CartCard } from "./CartCard";
 
 const CartOverlay = ({ openCart, cartHandler }) => {
+  const { cartItems, totalAmount } = useContext(cartContext);
+
   return (
     <div
       id="overlay-outer"
@@ -13,10 +17,14 @@ const CartOverlay = ({ openCart, cartHandler }) => {
     >
       <div className="flex justify-center mt-24 cursor-pointer" id="overlay">
         <div className="bg-white rounded-lg overflow-hidden w-[500px] p-4 text-lg">
-          <div>Sushi</div>
+          <div>
+            {cartItems.map((item) => (
+              <CartCard key={item.name} item={item} />
+            ))}
+          </div>
           <div className="flex justify-between font-bold text-2xl">
             <div>Total Amount</div>
-            <div>250 /-</div>
+            <div>{totalAmount} /-</div>
           </div>
           <div className="flex justify-end">
             <div className="flex">

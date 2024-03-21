@@ -1,10 +1,43 @@
 import { useContext, useState } from "react";
 import { cartContext } from "../../context/CartContextProvider";
 
-export const Form = () => {
+export const Form = ({ item }) => {
   const [quantity, setQuantity] = useState(0);
 
-  const { count, setCount } = useContext(cartContext);
+  const {
+    count,
+    setCount,
+    setCartItems,
+    cartItems,
+    totalAmount,
+    setTotalAmount,
+  } = useContext(cartContext);
+
+  function addToCart(cartItems, item) {
+    let index = inCartItems(cartItems, item);
+
+    if (index !== false) {
+      cartItems[index].count = cartItems[index].count + +quantity;
+
+      setCartItems(cartItems);
+    } else {
+      setCartItems([
+        ...cartItems,
+        { name: item.name, cost: item.cost, count: +quantity },
+      ]);
+    }
+  }
+
+  function inCartItems(cartItems, item) {
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].name === item.name) {
+        return i;
+      }
+    }
+
+    return false;
+  }
+
   return (
     <div>
       <label htmlFor="quantity">Quantity</label>
@@ -24,6 +57,8 @@ export const Form = () => {
           onClick={() => {
             setCount(count + +quantity);
             setQuantity(0);
+            addToCart(cartItems, item);
+            setTotalAmount(totalAmount + item.cost * +quantity);
           }}
         >
           +Add
